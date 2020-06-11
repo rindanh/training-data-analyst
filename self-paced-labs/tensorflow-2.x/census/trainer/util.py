@@ -196,7 +196,11 @@ def load_data():
       numpy arrays with the corresponding labels.
     """
     # Download Census dataset: Training and eval csv files.
+    print("DATA_DIR")
+    print(DATA_DIR)
     training_file_path, eval_file_path = download(DATA_DIR)
+    
+    print(training_file_path)
 
     # This census data uses the value '?' for missing entries. We use
     # na_values to
@@ -214,12 +218,22 @@ def load_data():
     # the label column from the dataframe.
     train_x, train_y = train_df, train_df.pop(_LABEL_COLUMN)
     eval_x, eval_y = eval_df, eval_df.pop(_LABEL_COLUMN)
+    
+    print("train_x")
+    print(train_x.head())
+    print("train_y")
+    print(train_y.head())
 
     # Join train_x and eval_x to normalize on overall means and standard
     # deviations. Then separate them again.
     all_x = pd.concat([train_x, eval_x], keys=['train', 'eval'])
     all_x = standardize(all_x)
     train_x, eval_x = all_x.xs('train'), all_x.xs('eval')
+    
+    print("train_x")
+    print(train_x.head())
+    print("train_y")
+    print(train_y.head())
 
     # Reshape label columns for use with tf.data.Dataset
     train_y = np.asarray(train_y).astype('float32').reshape((-1, 1))
