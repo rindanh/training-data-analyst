@@ -72,7 +72,8 @@ def train_and_evaluate(args):
     Args:
       args: dictionary of arguments - see get_args() for details
     """
-
+    print("ARGS")
+    print(args)
     train_x, train_y, eval_x, eval_y = util.load_data()
 
     # dimensions
