@@ -49,7 +49,7 @@ def input_fn(features, labels, shuffle, num_epochs, batch_size):
     dataset = dataset.repeat(num_epochs)
     dataset = dataset.batch(batch_size)
     print("dataset")
-    print(dataset.head())
+    print(dataset)
     return dataset
 
 
